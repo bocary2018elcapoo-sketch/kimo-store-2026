@@ -3,112 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIMO 2026 | SECURE PAYMENT</title>
+    <title>KIMO 2026 | FINAL PROTOCOL</title>
     <style>
-        :root { --primary: #00ffcc; --bg: #0a0a0a; --card: #1a1a1a; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        header { padding: 20px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; box-shadow: 0 0 20px var(--primary); }
+        :root { --primary: #00ffcc; --bg: #0a0a0a; --card: #1a1a1a; --notify: #ffcc00; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 60px; }
+        
+        /* شريط العداد التنازلي */
+        .countdown-bar { background: #111; color: var(--primary); text-align: center; padding: 10px; border-bottom: 1px solid var(--primary); font-weight: bold; letter-spacing: 2px; }
+        
+        header { padding: 30px; text-align: center; border-bottom: 2px solid var(--primary); background: #000; box-shadow: 0 0 20px var(--primary); }
         .main-content { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
         .container { flex: 3; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .product-card { background: var(--card); border-radius: 15px; border: 1px solid #333; overflow: hidden; text-align: center; transition: 0.3s; }
+        .product-card { background: var(--card); border-radius: 15px; border: 1px solid #333; overflow: hidden; text-align: center; transition: 0.3s; position: relative; }
         .product-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .product-img { width: 100%; height: 180px; object-fit: cover; }
+        
         .cart-panel { flex: 1; min-width: 320px; background: #111; padding: 25px; border-radius: 15px; border-right: 4px solid var(--primary); height: fit-content; }
         
-        /* واجهة الدفع المنبثقة */
-        #payment-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center;
+        /* نظام الإشعارات المنبثقة */
+        #notification-box {
+            position: fixed; top: 20px; left: 20px; background: var(--card); border-left: 5px solid var(--notify);
+            padding: 15px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.5); display: none; z-index: 2000;
+            animation: slideIn 0.5s ease-out; width: 250px;
         }
-        .modal-content {
-            background: #1a1a1a; padding: 30px; border-radius: 15px; border: 1px solid var(--primary);
-            width: 90%; max-width: 400px; text-align: center;
-        }
-        .loader {
-            border: 4px solid #f3f3f3; border-top: 4px solid var(--primary);
-            border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;
-            margin: 20px auto; display: none;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        input { background: #222; border: 1px solid #444; color: white; padding: 12px; width: 90%; border-radius: 8px; margin-bottom: 10px; }
-        .btn { background: var(--primary); color: black; padding: 12px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+        .btn { background: var(--primary); color: black; padding: 12px; width: 85%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
+        .btn:hover { box-shadow: 0 0 10px var(--primary); }
+        .status-bar { position: fixed; bottom: 0; width: 100%; background: #000; color: var(--primary); padding: 10px 20px; font-size: 12px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
+<!-- عداد الإطلاق -->
+<div class="countdown-bar" id="countdown">جاري حساب الوقت المتبقي لبروتوكول 2026...</div>
+
+<!-- صندوق الإشعارات -->
+<div id="notification-box">
+    <strong style="color:var(--notify)">🔔 إشعار النظام:</strong>
+    <p id="notify-msg" style="margin:5px 0; font-size:14px;"></p>
+</div>
+
 <header>
-    <h1>KIMO RELOAD 2026</h1>
-    <p>SECURE PAYMENT PROTOCOL: READY</p>
+    <h1>KIMO RELOAD <span style="color:var(--primary)">2026</span></h1>
+    <p>STORE PROTOCOL: FINAL SYNC COMPLETE</p>
 </header>
 
 <div class="main-content">
     <div class="container">
         <div class="product-card">
             <img src="https://images.unsplash.com" class="product-img">
-            <h3>بروتوكول K-01</h3>
-            <p>150.00 د.ك</p>
-            <button class="btn" style="width:80%; margin-bottom:15px;" onclick="addToCart('بروتوكول K-01', 150)">أضف للسلة</button>
+            <div style="padding:15px;">
+                <h3>بروتوكول K-01</h3>
+                <p>150.00 د.ك</p>
+                <button class="btn" onclick="addToCart('بروتوكول K-01', 150)">أضف للسلة</button>
+            </div>
         </div>
         <div class="product-card">
             <img src="https://images.unsplash.com" class="product-img">
-            <h3>وحدة K-02</h3>
-            <p>300.00 د.ك</p>
-            <button class="btn" style="width:80%; margin-bottom:15px;" onclick="addToCart('وحدة K-02', 300)">أضف للسلة</button>
+            <div style="padding:15px;">
+                <h3>وحدة K-02</h3>
+                <p>300.00 د.ك</p>
+                <button class="btn" onclick="addToCart('وحدة K-02', 300)">أضف للسلة</button>
+            </div>
         </div>
     </div>
 
     <div class="cart-panel">
-        <h3>🛒 السلة</h3>
-        <div id="cart-items">فارغة...</div>
-        <hr>
-        <h4>الإجمالي: <span id="total-price">0</span> د.ك</h4>
-        <button class="btn" onclick="openPayment()">تأكيد الشراء</button>
+        <h3>🛒 سلة المشتريات</h3>
+        <div id="cart-items" style="max-height: 200px; overflow-y: auto;">فارغة...</div>
+        <hr style="border: 0.5px solid #333;">
+        <h4>إجمالي المستحق: <span id="total-price" style="color:var(--primary)">0</span> د.ك</h4>
+        <button class="btn" style="width:100%; background:white;" onclick="checkout()">تأكيد الشراء والترحيل</button>
     </div>
 </div>
 
-<!-- مودال الدفع -->
-<div id="payment-modal">
-    <div class="modal-content">
-        <h2 id="modal-title">بوابة الدفع المشفرة</h2>
-        <div id="payment-form">
-            <input type="text" placeholder="رقم البطاقة (16 رقم)">
-            <div style="display:flex; gap:10px;">
-                <input type="text" placeholder="MM/YY">
-                <input type="text" placeholder="CVV">
-            </div>
-            <button class="btn" onclick="startProcess()">دفع الآن</button>
-        </div>
-        <div id="loader" class="loader"></div>
-        <p id="status-msg"></p>
-        <button id="close-btn" class="btn" style="display:none; background:#444; color:white;" onclick="closeModal()">إغلاق</button>
-    </div>
+<div class="status-bar">
+    [SYSTEM STATUS: ONLINE] | [ENCRYPTION: ACTIVE] | [PROTOCOLS: 2/2 DEPLOYED]
 </div>
 
 <script>
     let cart = []; let total = 0;
-    function addToCart(n, p) { cart.push({n, p}); total += p; updateUI(); }
+
+    // 1. نظام العداد التنازلي لعام 2026
+    const countdownDate = new Date("Jan 1, 2026 00:00:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = `إطلاق بروتوكول RELOAD بعد: ${days} يوم و ${hours}:${mins}:${secs}`;
+    }, 1000);
+
+    // 2. نظام الإشعارات الذكي
+    function showNotification(msg) {
+        const box = document.getElementById('notification-box');
+        document.getElementById('notify-msg').innerText = msg;
+        box.style.display = 'block';
+        setTimeout(() => { box.style.display = 'none'; }, 4000);
+    }
+
+    function addToCart(n, p) {
+        cart.push({n, p});
+        total += p;
+        updateUI();
+        showNotification(`تمت إضافة ${n} إلى السلة بنجاح.`);
+    }
+
     function updateUI() {
-        document.getElementById('cart-items').innerHTML = cart.map(i => `<p>${i.n} - ${i.p} د.ك</p>`).join('');
+        document.getElementById('cart-items').innerHTML = cart.map(i => `<p style="font-size:14px;">• ${i.n} (${i.p} د.ك)</p>`).join('');
         document.getElementById('total-price').innerText = total;
     }
-    function openPayment() {
-        if(cart.length === 0) return alert("السلة فارغة!");
-        document.getElementById('payment-modal').style.display = 'flex';
-    }
-    function startProcess() {
-        document.getElementById('payment-form').style.display = 'none';
-        document.getElementById('loader').style.display = 'block';
-        document.getElementById('status-msg').innerText = "جاري تشفير البيانات وتوصيل البروتوكول...";
-        
+
+    function checkout() {
+        if(cart.length === 0) return showNotification("⚠️ السلة فارغة، لا يمكن الترحيل!");
+        showNotification("جاري معالجة الطلب عبر خوادم KIMO...");
         setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('status-msg').innerHTML = "✅ تم الدفع بنجاح!<br>رقم العملية: #KIMO-2026-TX99";
-            document.getElementById('close-btn').style.display = 'block';
+            alert("✅ بروتوكول الشراء اكتمل!\nإجمالي العملية: " + total + " د.ك\nرقم التتبع: KIMO-2026-FINAL");
             cart = []; total = 0; updateUI();
-        }, 3000);
+        }, 2000);
     }
-    function closeModal() { document.getElementById('payment-modal').style.display = 'none'; location.reload(); }
 </script>
 
 </body>
