@@ -6,7 +6,7 @@
     <title>KIMO 2026 | OFFICIAL STORE</title>
     <style>
         :root { --primary: #00ffcc; --bg: #0a0a0a; --card: #1a1a1a; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 60px; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding-bottom: 60px; }
         .logo-container { padding: 30px; text-align: center; background: #000; border-bottom: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary); }
         .logo-text { font-size: 3rem; font-weight: 900; letter-spacing: 8px; text-shadow: 0 0 15px var(--primary); }
         .countdown-bar { background: #111; color: var(--primary); text-align: center; padding: 12px; font-weight: bold; border-bottom: 1px solid #333; }
@@ -14,7 +14,10 @@
         .container { flex: 3; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .product-card { background: var(--card); border-radius: 20px; border: 1px solid #333; overflow: hidden; transition: 0.4s; text-align: center; }
         .product-card:hover { border-color: var(--primary); transform: scale(1.03); }
-        .product-img { width: 100%; height: 220px; object-fit: cover; background: #222; }
+        
+        /* معالجة الصور لضمان الظهور */
+        .product-img { width: 100%; height: 220px; background: linear-gradient(45deg, #111, #222); display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        
         .cart-panel { flex: 1; min-width: 320px; background: #111; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); height: fit-content; }
         .btn { background: var(--primary); color: black; padding: 12px; width: 90%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin: 15px 0; }
         input, textarea { background: #222; border: 1px solid #444; color: white; padding: 12px; width: 90%; border-radius: 8px; margin-bottom: 10px; }
@@ -31,9 +34,9 @@
 
 <div class="main-content">
     <div class="container">
-        <!-- منتج 1 بوقعه الحقيقي -->
+        <!-- منتج 1 بوقعه الرقمي المضمون -->
         <div class="product-card">
-            <img src="https://images.pexels.com" class="product-img">
+            <div class="product-img">⚡</div>
             <div style="padding:15px;">
                 <h3>معالج K-Quantum</h3>
                 <p style="color:gray">تقنية المعالجة الذرية لعام 2026</p>
@@ -42,9 +45,9 @@
             </div>
         </div>
 
-        <!-- منتج 2 بوقعه الحقيقي -->
+        <!-- منتج 2 بوقعه الرقمي المضمون -->
         <div class="product-card">
-            <img src="https://images.pexels.com" class="product-img">
+            <div class="product-img">👓</div>
             <div style="padding:15px;">
                 <h3>نظارة K-Vision Pro</h3>
                 <p style="color:gray">عالمك الافتراضي بأبعاد حقيقية</p>
