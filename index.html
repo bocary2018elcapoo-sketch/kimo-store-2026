@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -7,90 +7,70 @@
     <style>
         :root { --primary: #00ffcc; --bg: #0a0a0a; --card: #1a1a1a; }
         body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 60px; }
-        
-        /* 1. تصميم الشعار (Logo) */
-        .logo-container { padding: 20px; text-align: center; background: #000; border-bottom: 2px solid var(--primary); }
-        .logo-text { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; color: white; text-shadow: 0 0 10px var(--primary); }
-        .logo-sub { color: var(--primary); font-size: 0.9rem; letter-spacing: 2px; }
-
-        .countdown-bar { background: #111; color: var(--primary); text-align: center; padding: 10px; font-size: 14px; }
-        .main-content { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
+        .logo-container { padding: 30px; text-align: center; background: #000; border-bottom: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary); }
+        .logo-text { font-size: 3rem; font-weight: 900; letter-spacing: 8px; text-shadow: 0 0 15px var(--primary); }
+        .countdown-bar { background: #111; color: var(--primary); text-align: center; padding: 12px; font-weight: bold; border-bottom: 1px solid #333; }
+        .main-content { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; justify-content: center; }
         .container { flex: 3; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        
-        /* 2. ترتيب المنتجات الحقيقية */
-        .product-card { background: var(--card); border-radius: 15px; border: 1px solid #333; overflow: hidden; text-align: center; transition: 0.3s; }
-        .product-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .product-img { width: 100%; height: 200px; object-fit: cover; }
-        .product-info { padding: 15px; }
-
-        /* 3. نظام سلة المشتريات والتواصل */
-        .cart-panel { flex: 1; min-width: 320px; background: #111; padding: 25px; border-radius: 15px; border-right: 4px solid var(--primary); height: fit-content; }
-        .btn { background: var(--primary); color: black; padding: 12px; width: 100%; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
-        .contact-form { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
-        input, textarea { background: #222; border: 1px solid #444; color: white; padding: 10px; width: 95%; border-radius: 5px; margin-bottom: 10px; font-family: inherit; }
-        
-        .status-bar { position: fixed; bottom: 0; width: 100%; background: #000; color: var(--primary); padding: 10px 20px; font-size: 11px; text-align: left; }
+        .product-card { background: var(--card); border-radius: 20px; border: 1px solid #333; overflow: hidden; transition: 0.4s; text-align: center; }
+        .product-card:hover { border-color: var(--primary); transform: scale(1.03); }
+        .product-img { width: 100%; height: 220px; object-fit: cover; background: #222; }
+        .cart-panel { flex: 1; min-width: 320px; background: #111; padding: 25px; border-radius: 20px; border: 1px solid var(--primary); height: fit-content; }
+        .btn { background: var(--primary); color: black; padding: 12px; width: 90%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin: 15px 0; }
+        input, textarea { background: #222; border: 1px solid #444; color: white; padding: 12px; width: 90%; border-radius: 8px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-<div class="countdown-bar" id="countdown">Loading Protocol 2026...</div>
+<div class="countdown-bar" id="countdown">Initializing Protocol 2026...</div>
 
-<!-- الشعار المطور -->
 <div class="logo-container">
     <div class="logo-text">KIMO</div>
-    <div class="logo-sub">RELOAD 2026 PROTOCOL</div>
+    <div style="color:var(--primary); letter-spacing:3px;">RELOAD 2026 OFFICIAL</div>
 </div>
 
 <div class="main-content">
     <div class="container">
-        <!-- منتج 1: معالج المستقبل -->
+        <!-- منتج 1 بوقعه الحقيقي -->
         <div class="product-card">
-            <img src="https://images.unsplash.com" class="product-img">
-            <div class="product-info">
+            <img src="https://images.pexels.com" class="product-img">
+            <div style="padding:15px;">
                 <h3>معالج K-Quantum</h3>
-                <p style="color:gray">أسرع معالج ذكاء اصطناعي لعام 2026</p>
-                <p style="font-size: 1.2rem; color:var(--primary)">450.00 د.ك</p>
+                <p style="color:gray">تقنية المعالجة الذرية لعام 2026</p>
+                <p style="font-size:1.3rem; color:var(--primary)">450.00 د.ك</p>
                 <button class="btn" onclick="addToCart('معالج K-Quantum', 450)">إضافة للسلة</button>
             </div>
         </div>
 
-        <!-- منتج 2: نظارات الواقع المعزز -->
+        <!-- منتج 2 بوقعه الحقيقي -->
         <div class="product-card">
-            <img src="https://images.unsplash.com" class="product-img">
-            <div class="product-info">
+            <img src="https://images.pexels.com" class="product-img">
+            <div style="padding:15px;">
                 <h3>نظارة K-Vision Pro</h3>
-                <p style="color:gray">تجربة واقع معزز تفاعلية بالكامل</p>
-                <p style="font-size: 1.2rem; color:var(--primary)">290.00 د.ك</p>
+                <p style="color:gray">عالمك الافتراضي بأبعاد حقيقية</p>
+                <p style="font-size:1.3rem; color:var(--primary)">290.00 د.ك</p>
                 <button class="btn" onclick="addToCart('نظارة K-Vision Pro', 290)">إضافة للسلة</button>
             </div>
         </div>
     </div>
 
-    <!-- السلة ونظام التواصل -->
     <div class="cart-panel">
-        <h3>🛒 سلة المشتريات</h3>
-        <div id="cart-items">السلة فارغة...</div>
-        <h4>الإجمالي: <span id="total-price">0</span> د.ك</h4>
-        <button class="btn" onclick="checkout()">تأكيد الطلب</button>
+        <h3>🛒 السلة الذكية</h3>
+        <div id="cart-items" style="border-bottom:1px solid #333; margin-bottom:10px;">السلة فارغة...</div>
+        <h4>الإجمالي: <span id="total-price" style="color:var(--primary)">0</span> د.ك</h4>
+        <button class="btn" onclick="alert('جاري معالجة طلبك رقم #TX2026')">تأكيد الطلب</button>
 
-        <!-- نظام تواصل معنا -->
-        <div class="contact-form">
-            <h4>📩 تواصل مع الإدارة</h4>
-            <input type="text" id="contact-name" placeholder="الاسم الكامل">
-            <textarea id="contact-msg" rows="3" placeholder="رسالتك لبروتوكول 2026..."></textarea>
-            <button class="btn" style="background:#444; color:white;" onclick="sendContact()">إرسال الرسالة</button>
+        <div style="margin-top:20px; border-top:1px solid #333; padding-top:15px;">
+            <h4>📩 مراسلة الإدارة</h4>
+            <input type="text" placeholder="الاسم الكامل">
+            <textarea rows="2" placeholder="اكتب رسالتك هنا..."></textarea>
+            <button class="btn" style="background:#333; color:white;">إرسال مشفر</button>
         </div>
     </div>
 </div>
 
-<div class="status-bar">SYSTEM: LIVE | SECURITY: AES-KIMO | ENCRYPTION: ACTIVE</div>
-
 <script>
     let cart = []; let total = 0;
-
-    // العداد التنازلي
     const target = new Date("Jan 1, 2026 00:00:00").getTime();
     setInterval(() => {
         const now = new Date().getTime();
@@ -99,29 +79,14 @@
         const h = Math.floor((d%(1000*60*60*24))/(1000*60*60));
         const m = Math.floor((d%(1000*60*60))/(1000*60));
         const s = Math.floor((d%(1000*60))/1000);
-        document.getElementById("countdown").innerText = `إطلاق البروتوكول النهائي بعد: ${days} يوم و ${h}:${m}:${s}`;
+        document.getElementById("countdown").innerText = `المتبقي على إطلاق 2026: ${days} يوم و ${h}:${m}:${s}`;
     }, 1000);
 
     function addToCart(n, p) {
         cart.push({n, p}); total += p;
-        document.getElementById('cart-items').innerHTML = cart.map(i => `<p>• ${i.n} (${i.p} د.ك)</p>`).join('');
+        document.getElementById('cart-items').innerHTML = cart.map(i => `<p>✅ ${i.n} (${i.p} د.ك)</p>`).join('');
         document.getElementById('total-price').innerText = total;
-    }
-
-    function checkout() {
-        if(cart.length === 0) return alert("السلة فارغة!");
-        alert("✅ تم استلام طلبك رقم #KIMO-TX2026\nإجمالي المبلغ: " + total + " د.ك");
-    }
-
-    // نظام التواصل
-    function sendContact() {
-        const name = document.getElementById('contact-name').value;
-        if(!name) return alert("يرجى إدخال اسمك أولاً.");
-        alert("شكراً لك يا " + name + "!\nتم تشفير رسالتك وإرسالها إلى خوادم KIMO بنجاح.");
-        document.getElementById('contact-name').value = "";
-        document.getElementById('contact-msg').value = "";
     }
 </script>
 </body>
 </html>
-
